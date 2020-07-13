@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const cors = require('cors');
+const DB = require('./config/keys').MongoURI;
 
 app.use('cors');
 

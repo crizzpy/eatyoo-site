@@ -4,16 +4,17 @@ const app = express();
 const cors = require('cors');
 const DB = require('./config/keys').MongoURI;
 
-app.use('cors');
+// app.use('cors');
 
 // routes
-app.use('/food', require('/routes/food'));
+app.use('/food', require('./routes/food'));
 
 //connect to DB
 mongoose
   .connect(DB, { useNewUrlParser: true })
   .then(() => console.log('Connected to DB'))
-  .catch(err => console.log(err));
+  .catch(err => console.log(err))
 
-const PORT = process.env.PORT || 4000;
+
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, console.log(`Server running on port ${PORT}`));

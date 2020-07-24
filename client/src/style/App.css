@@ -1,0 +1,104 @@
+* {
+  margin: 0;  
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-image: url('../images/gingham-bg-1.jpg');
+}
+
+.site-bg{
+  height: 100%;
+  width: 100%;
+}
+.site-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 6;
+  /* background: white; */
+}
+.site-bg-overlay-lightness{
+  position: absolute;
+  z-index: 5;
+  left: 0px;
+  top: 0px;
+  height: 100%;
+  width: 100%;
+  background: white;
+  opacity: 0.5;
+}
+
+.site-bg > .site-container > div {
+  display: flex;
+  background: transparent;
+}
+
+.site-container .header-container {
+  display: flex;
+  background: transparent;
+}
+.site-container .body-container {
+  display: flex;
+  background: transparent;
+}
+.site-container .footer-container {
+  display: flex;
+  background: transparent;
+}
+
+.header-inner{
+  padding: 20px 20px 0 20px;
+}
+.body-inner{
+  padding: 0 20px 0 20px
+}
+.footer-inner{
+  padding: 0 20px 20px 20px;
+}
+.header-bg{
+  background: red;
+}
+.body-bg{
+  background: green;
+}
+.footer-bg{
+  background: blue;
+}
+.top-tabs-container{
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+.top-tabs-inner{
+  display: flex;
+}
+.non-logo{
+  /* width: 66%; */
+  /* flex: 10; */
+  /* width: 100%; */
+  display: flex;
+  flex-basis: 166%;
+}
+.header-tab{
+  display: flex;
+  height: calc(100% - 15px);
+  width: 100%;
+  background: grey;
+  border: 2px solid black;
+
+}
+.logo{
+  width: 33%;
+}
+#home{
+}
+

@@ -10,17 +10,33 @@ function App() {
     const [resizing, setResizing] = useState(null);
     const [windowHeight, setWindowHeight] = useState(null);
     const [windowWidth, setWindowWidth] = useState(null);
+    const [lists, setLists] = useState(null);
+    const [listsLoaded, setListsLoaded] = useState(null);
+    const [adminViewDishes, setAdminViewDishes] = useState(null);
+    const [adminViewLists, setAdminViewLists] = useState(null);
+    const [adminViewRecipes, setAdminViewRecipes] = useState(null);
+
     
     const globalPoviderValue = useMemo(
       () => ({
         resizing, setResizing,
         windowHeight, setWindowHeight,
         windowWidth, setWindowWidth,
+        lists, setLists,
+        listsLoaded, setListsLoaded,
+        adminViewDishes, setAdminViewDishes,
+        adminViewLists, setAdminViewLists,
+        adminViewRecipes, setAdminViewRecipes,
       }),
       [
         resizing, setResizing,
         windowHeight, setWindowHeight,
         windowWidth, setWindowWidth,
+        lists, setLists,
+        listsLoaded, setListsLoaded,
+        adminViewDishes, setAdminViewDishes,
+        adminViewLists, setAdminViewLists,
+        adminViewRecipes, setAdminViewRecipes,
       ]
     );
 
@@ -36,13 +52,9 @@ function App() {
 
   return (
     <React.Fragment>
-      {/* <Router>
-        <Route path="/"> */}
           <GlobalContext.Provider value={globalPoviderValue}>
             <SiteContainer />
           </GlobalContext.Provider>
-        {/* </Route>
-      </Router> */}
     </React.Fragment>
   );
 }

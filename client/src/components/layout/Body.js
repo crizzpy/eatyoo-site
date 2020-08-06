@@ -1,27 +1,43 @@
-import React from 'react'
-import { BrowserRouter as Switch, Route, Redirect} from 'react-router-dom'
+import React, {useEffect, useContext} from 'react'
+import {GlobalContext} from '../../App'
+import { __RouterContext, BrowserRouter as Switch, Route, Redirect} from 'react-router-dom'
+import {HomeView} from '../views/HomeView'
+import {ListView} from '../views/ListView'
+import {AdminView} from '../views/AdminView'
+import {ArchiveView} from '../views/ArchiveView'
+import {SearchView} from '../views/SearchView'
+import {useTransition, animated} from 'react-spring'
 
 export const Body = () => {
+    useEffect(() => {
+        loadLists()
+        if (!lists) {
+
+        }
+    }, [])
+
+    const {lists} = useContext(GlobalContext)
+
+    
+    const loadLists = () => {
+        console.log('loading lists')
+    }
+
     return (
         <div className="body-inner">
             <div className="body-bg">
-                {/* <Redirect push to="/">
-                    <Route exact path="/">
-                        <div>Body</div>
-                    </Route>
-                </Redirect> */}
-                <Switch>
-                    <Route path="/">
-                        <div>home</div>
-                    </Route>
-                    <Route path="/list">
-                        <div>list</div>
-                    </Route>
-                    <Route path="/search">
-                        <div>search</div>
-                    </Route>
-                </Switch>
-                {/* Body */}
+                <Route path="/list">
+                    <ListView />
+                </Route>
+                <Route path="/search">
+                    <SearchView />
+                </Route>
+                <Route path="/archive">
+                    <ArchiveView />
+                </Route>
+                <Route path="/admin">
+                    <AdminView />
+                </Route>
             </div>
         </div>
     )

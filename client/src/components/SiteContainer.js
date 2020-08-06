@@ -20,6 +20,8 @@ export const SiteContainer = () => {
         console.log('resize complete')
         console.log(windowWidth, windowHeight)
     }, [resizing])
+
+    
     return (
         <React.Fragment>
 

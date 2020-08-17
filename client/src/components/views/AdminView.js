@@ -1,4 +1,6 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext, useReducer, createContext} from 'react'
+import {GlobalContext} from '../../App'
+import {Context} from '../../Store'
 import { __RouterContext, NavLink, BrowserRouter as Switch, Route, Redirect} from 'react-router-dom'
 import axios from 'axios'
 import {Dishes} from '../misc/Dishes'
@@ -8,14 +10,40 @@ import {AddDish} from '../misc/AddDish'
 import {AddList} from '../misc/AddList'
 import {AddRecipe} from '../misc/AddRecipe'
 
-
 export const AdminView = () => {
+    
+    // const [state, dispatch] = useReducer(AdminLoadReducer, initialState)
+    const {state, dispatch} = useContext(Context)
     useEffect(() => {
         loadArchive()
-    })
+    }, [])
+    const {
+            AVdishes, setAVdishes,
+            AVdishesLoaded, setAVdishesLoaded    
+        } = useContext(GlobalContext)
 
-    const loadArchive = () => {
+    const loadArchive = async () => {
         console.log('fetching archive')
+        if (!state.AVdishesLoaded) {
+            console.log('fetching dishes')
+            axios
+                .get('/dishes/retrieve')
+                .then(res => {
+                    res.data.map(dish => {
+                        AVdishes.push(dish)
+                    });
+                    dispatch({
+                        type: 'update_admin_dishes_loaded',
+                        AVdishesLoaded: true
+                    })
+                    setAVdishesLoaded(true)
+                    return
+                })
+                .catch(err =>{
+                    console.log(err)
+                    alert(err)
+                });
+        }
     }
 
     return (
@@ -32,19 +60,19 @@ export const AdminView = () => {
                             <Dishes />
                         </Route>
                         <Route path="/admin/dishes/add">
-                            <AddDish />
+                            <AddDish navlinkRoute={"dishes"} />
                         </Route>
                         <Route path="/admin/lists">
                             <Lists />
                         </Route>
                         <Route path="/admin/lists/add">
-                            <AddList />
+                            <AddList navlinkRoute={"lists"} />
                         </Route>
                         <Route path="/admin/recipes">
                             <Recipes />
                         </Route>
                         <Route path="/admin/recipes/add">
-                            <AddRecipe />
+                            <AddRecipe navlinkRoute={"recipes"} />
                         </Route>
                     </div>
                 </div>

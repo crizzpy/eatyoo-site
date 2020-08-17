@@ -221,23 +221,24 @@ body {
   /* display: flex; */
 }
 
-.dishes-aggregated-container{
+.db-items-aggregated-container{
   /* background: white; */
   /* display: flex; */
   height: calc(100% - 20px);
   overflow: auto;
   display: flex;
+  flex-direction: column;
   justify-items: center;
 }
-.add-dish-btn{
+
+.add-item-btn{
   height: 40px;
   background: grey;
   text-align: justify;
   text-justify: distribute;
-  color: black;
-  
+  color: black; 
 }
-.add-dish-btn:hover{
+.add-item-btn:hover{
   background: rgb(199, 199, 199);
   cursor: pointer;
 }
@@ -260,6 +261,9 @@ body {
   height: 100%;
   width: 100%;
   /* background: black; */
+}
+.add-x-route-link{
+  height: 20px;
 }
 
 .add-x-form-container{
@@ -342,4 +346,19 @@ body {
   cursor: pointer;
   background: black;
   color: white;
+}
+.items-list-container{
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+}
+.db-items-item-container{
+  background: red;
+  height: 40px;
+  border: black solid 2px;
+  padding: 2px;
+}
+.items-item-inner{
+
 }

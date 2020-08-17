@@ -8,11 +8,15 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "react": "^16.13.1",
+    "react-combine-reducers": "^1.0.4",
     "react-cookie": "^4.0.3",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "react-spring": "^8.0.27"
+    "react-spring": "^8.0.27",
+    "uuid": "^8.3.0",
+    "zustand": "^2.2.4"
   },
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

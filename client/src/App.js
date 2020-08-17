@@ -1,60 +1,80 @@
-import React, {useState, createContext, useMemo, useEffect} from 'react';
+import React, {useState, createContext, useMemo, useEffect, useReducer} from 'react';
 import logo from './logo.svg';
 import './style/App.css'
 import {SiteContainer} from './components/SiteContainer'
+import {EventListeners} from './components/EventListeners'
 import {BrowserRouter as Route, Router, Switch, Link} from 'react-router-dom'
+// import create from 'zustand'
+import Store from './Store'
 
 export const GlobalContext = createContext(null);
 
 function App() {
-    const [resizing, setResizing] = useState(null);
-    const [windowHeight, setWindowHeight] = useState(null);
-    const [windowWidth, setWindowWidth] = useState(null);
-    const [lists, setLists] = useState(null);
+
+  useEffect(() => {
+    console.log('rerender')
+  }, [])
+
+    const [loadProgress, setLoadProgress] = useState(null) 
+
+    const [AVdishes, setAVdishes] = useState([]);
+    const [AVlists, setAVlists] = useState([]);
+    const [AVrecipes, setAVrecipes] = useState([]);
+    const [dishes, setDishes] = useState([]);
+    const [lists, setLists] = useState([]);
+    const [recipes, setRecipes] = useState([]);
+    const [AVdishesLoaded, setAVdishesLoaded] = useState(null);
+    const [AVlistsLoaded, setAVlistsLoaded] = useState(null);
+    const [AVrecipesLoaded, setAVrecipesLoaded] = useState(null);
+    const [dishesLoaded, setDishesLoaded] = useState(null);
     const [listsLoaded, setListsLoaded] = useState(null);
-    const [adminViewDishes, setAdminViewDishes] = useState(null);
-    const [adminViewLists, setAdminViewLists] = useState(null);
-    const [adminViewRecipes, setAdminViewRecipes] = useState(null);
+    const [recipesLoaded, setRecipesLoaded] = useState(null);
 
     
     const globalPoviderValue = useMemo(
       () => ({
-        resizing, setResizing,
-        windowHeight, setWindowHeight,
-        windowWidth, setWindowWidth,
         lists, setLists,
         listsLoaded, setListsLoaded,
-        adminViewDishes, setAdminViewDishes,
-        adminViewLists, setAdminViewLists,
-        adminViewRecipes, setAdminViewRecipes,
+        AVdishes, setAVdishes,
+        AVlists, setAVlists,
+        AVrecipes, setAVrecipes,
+        dishes, setDishes,
+        lists, setLists,
+        recipes, setRecipes,
+        AVdishesLoaded, setAVdishesLoaded,
+        AVlistsLoaded, setAVlistsLoaded,
+        AVrecipesLoaded, setAVrecipesLoaded,
+        dishesLoaded, setDishesLoaded,
+        listsLoaded, setListsLoaded,
+        recipesLoaded, setRecipesLoaded,
       }),
       [
-        resizing, setResizing,
-        windowHeight, setWindowHeight,
-        windowWidth, setWindowWidth,
         lists, setLists,
         listsLoaded, setListsLoaded,
-        adminViewDishes, setAdminViewDishes,
-        adminViewLists, setAdminViewLists,
-        adminViewRecipes, setAdminViewRecipes,
+        AVdishes, setAVdishes,
+        AVlists, setAVlists,
+        AVrecipes, setAVrecipes,
+        dishes, setDishes,
+        lists, setLists,
+        recipes, setRecipes,
+        AVdishesLoaded, setAVdishesLoaded,
+        AVlistsLoaded, setAVlistsLoaded,
+        AVrecipesLoaded, setAVrecipesLoaded,
+        dishesLoaded, setDishesLoaded,
+        listsLoaded, setListsLoaded,
+        recipesLoaded, setRecipesLoaded,
       ]
     );
-
-    useEffect(() => {
-      window.addEventListener('resize', () => {
-        if (!resizing) {
-          setResizing(true)
-          console.log('resizing')
-        }
-      })
-
-    }, [])
-
+    
   return (
     <React.Fragment>
-          <GlobalContext.Provider value={globalPoviderValue}>
+      <Store>
+        <GlobalContext.Provider value={globalPoviderValue}>
+          <EventListeners>
             <SiteContainer />
-          </GlobalContext.Provider>
+          </EventListeners>
+        </GlobalContext.Provider>
+      </Store>
     </React.Fragment>
   );
 }

@@ -1,31 +1,38 @@
 const mongoose = require('mongoose');
+const uuid = require('uuid')
 
 const DishSchema = mongoose.Schema({
-	foodId: {
+	dishId: {
 		type: String,
         required: true,
+        default: uuid.v4()
     },
 	dateAdded: {
-		type: Date,
+        type: Date,
+        required: true,
 		default: Date.now(),
 	},
-	title: {
+	dishTitle: {
         type: String,
         required: true,
     },
-    description: {
+    dishDesc: {
         type: String,
         required: true,
     },
-    imgUrl: {
+    dishImgUrl: {
         type: String,
         required: true,
     },
-    tags: {
+    dishTags: {
         type: Array,
         required: false,
     },
-    linkedTrends: {
+    dishMemeUrl: {
+        type: String,
+        required: false
+    },
+    dishAssociated: {
         type: Array,
         required: false
     }

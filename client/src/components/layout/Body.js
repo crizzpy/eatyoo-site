@@ -9,19 +9,6 @@ import {SearchView} from '../views/SearchView'
 import {useTransition, animated} from 'react-spring'
 
 export const Body = () => {
-    useEffect(() => {
-        loadLists()
-        if (!lists) {
-
-        }
-    }, [])
-
-    const {lists} = useContext(GlobalContext)
-
-    
-    const loadLists = () => {
-        console.log('loading lists')
-    }
 
     return (
         <div className="body-inner">

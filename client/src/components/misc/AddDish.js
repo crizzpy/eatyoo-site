@@ -1,7 +1,11 @@
-import React, {useRef} from 'react'
-// import uuid from 'uuid'
+import React, {useRef, useState} from 'react'
+import * as uuid from 'uuid'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
+import {AddedTag} from '../shared/AddedTag'
+import AddOREditTags from '../shared/AV/AddOREditTags'
+
+
 export const AddDish = ({navlinkRoute}) => {
     const submitDish = async e => {
         e.preventDefault()
@@ -10,9 +14,9 @@ export const AddDish = ({navlinkRoute}) => {
                 dishTitle: titleRef.current.value,
                 dishDesc: descriptionRef.current.value,
                 dishImgUrl: imgUrlRef.current.value,
-                dishTags: tagsRef.current.value,
+                dishTags: addedTags,
                 dishMemeUrl: memeUrlRef.current.value,
-                dishAssociated: associatedRef.current.value
+                dishAssociated: addedAsscs
             }
             console.log(dishData)
             axios.post('/dishes/add', dishData)
@@ -32,6 +36,9 @@ export const AddDish = ({navlinkRoute}) => {
     const tagsRef = useRef(null)
     const memeUrlRef = useRef(null)
     const associatedRef = useRef(null)
+
+    const [addedTags, setAddedTags] = useState([])
+    const [addedAsscs, setAddedAsscs] = useState([])
 
     return (
         <React.Fragment>
@@ -61,14 +68,49 @@ export const AddDish = ({navlinkRoute}) => {
                             <div>
                                 <input placeholder="Image URL" ref={imgUrlRef} />
                             </div>
-                            <div>
+                            {/* <AddOREditTags 
+                            addedTags={addedTags}
+                            setAddedTags={setAddedTags}
+                            ref={tagsRef} /> */}
+                            <div className="add-x-form-tags-associated">
                                 <input placeholder="Tags" ref={tagsRef} />
+                                <button className="add-x-form-btn" onClick={e => {
+                                    e.preventDefault()
+                                    // if (!tagsRef == ''){
+                                    if (tagsRef.current.value){
+                                        setAddedTags([...addedTags, {
+                                            id: uuid.v4(),
+                                            name: tagsRef.current.value
+                                        }])
+                                        console.log(addedTags)
+                                        tagsRef.current.value = ''
+                                    }
+                                }}>
+                                    Add Tag
+                                </button>
+                                <div className="add-x-tags-listed">
+                                    {addedTags.map(tag => {
+                                        return(
+                                            <AddedTag 
+                                                tag={tag}
+                                                addedTags={addedTags}
+                                                setAddedTags={setAddedTags}
+                                            />
+                                        )
+                                    })}
+                                </div>
                             </div>
                             <div>
                                 <input placeholder="Meme URL" ref={memeUrlRef} />
                             </div>
-                            <div>
+                            <div className="add-x-form-tags-associated">
                                 <input placeholder="Associated Trends / Lists" ref={associatedRef} />
+                                <button className="add-x-form-btn">Add Associated Trend / Lists</button>
+                                <div className="tags-listed">
+                                {/* Associated Trends / Lists */}
+
+
+                                </div>
                             </div>
                         </div>
                     </div>

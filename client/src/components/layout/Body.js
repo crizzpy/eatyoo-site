@@ -13,6 +13,9 @@ export const Body = () => {
     return (
         <div className="body-inner">
             <div className="body-bg">
+                <Route path="/home">
+                    <HomeView />
+                </Route>
                 <Route path="/list">
                     <ListView />
                 </Route>

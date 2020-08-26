@@ -11,24 +11,18 @@ export const SiteContainer = () => {
     let windowInnerHeight
     useEffect(() => {
         //resizing logic
-        // windowInnerWidth = window.innerWidth
-        // windowInnerHeight = window.innerHeight
         dispatch({
             type: 'update_window_width',
-            // windowWidth: windowInnerWidth
             windowWidth: window.innerWidth
         })
         dispatch({
             type: 'update_window_height',
-            // windowHeight: windowInnerWidth
             windowHeight: window.innerHeight
         })
       }, [state.reducerThree.windowResizing])
 
       return (
         <React.Fragment>
-
-            {/* <div className="site-bg"> */}
                 <div className="site-container">
                     <div className="header-container" style={{ height: `${state.reducerThree.windowHeight * 0.05 }%` }}>
                         <Header />
@@ -41,7 +35,6 @@ export const SiteContainer = () => {
                     </div>
                 </div>
                 <div className='site-bg-overlay-lightness' />
-            {/* </div> */}
         </React.Fragment>
     )
 }

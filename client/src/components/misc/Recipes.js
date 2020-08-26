@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import {AddNew} from '../shared/AddNew'
+import {AddNew} from '../shared/AV/AddNew'
 
 export const Recipes = () => {
     return (

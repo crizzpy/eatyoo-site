@@ -263,7 +263,9 @@ body {
   /* background: black; */
 }
 .add-x-route-link{
-  height: 20px;
+  display: flex;
+  /* max-height: 20px; */
+  height: 40px;
 }
 
 .add-x-form-container{
@@ -337,6 +339,21 @@ body {
   height: 25px;
   display: flex;
 }
+.add-x-inputs button{
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  text-justify: center;
+  /* background: black; */
+}
+.add-x-form-btn{
+  height: 20px;
+}
+.add-x-form-tags-associated{
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
 .save-btn{
   height: 20px;
   margin: 20px;
@@ -350,15 +367,230 @@ body {
 .items-list-container{
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: calc(100% - 20px);
   background: white;
 }
+
 .db-items-item-container{
+  position: relative;
   background: red;
   height: 40px;
   border: black solid 2px;
   padding: 2px;
+  display: flex;
+  flex-direction: row;
 }
-.items-item-inner{
 
+.db-items-item-container.expanded{
+  height: 220px;
+  overflow: auto;
+}
+
+
+.items-item-inner{
+  display: flex;
+  flex-direction: row;
+}
+.entry-info{
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  /* width: 50%; */
+  /* height: 50%; */
+}
+.entry-info.expanded{
+
+}
+.entry-title{
+  display: flex;
+  background: green;
+  max-height: 40px;
+}
+.entry-desc{
+  display: flex;
+  /* width: 50%; */
+  /* height: 50%; */
+}
+.entry-images-previews{
+  flex:4;
+  display: flex;
+  flex-direction: row;
+}
+.av-dish-img-previews{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  text-justify: center;
+}
+.av-img-preview{
+  object-fit: scale-down;
+}
+.entry-actions{
+  /* position: absolute; */
+  right: 0px;
+  display: flex;
+  flex: 2;
+  flex-direction: column;
+  /* background: grey; */
+  /* width: 100%; */
+}
+.btns-top{
+  max-height: 40px;
+  display: flex;
+}
+.btns-top.expanded{
+
+}
+.entry-edit-btn{
+  display: flex;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 100%;
+  background: gray;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  text-justify: center;
+}
+.entry-edit-btn:hover{
+  cursor: pointer;
+}
+.fa-icon{
+  max-height: 20px;
+  max-width: 20px;
+  background: none;
+  color: white;
+}
+
+.expand-btn{
+  background: gray;
+  display: flex;
+  color: white;
+  width: 100%;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  text-justify: center;
+}
+.expand-btn:hover{
+  cursor: pointer;
+}
+.expand-btn.expanded{
+  /* right: 20px;
+  top: 20px; */
+  /* background: black; */
+  transform: rotate(180deg);
+}
+.hide{
+  display: none;
+}
+.tags-trends{
+  display: flex;
+  flex-direction: column;
+  background: slateblue;
+}
+.tags-trends-header{
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  text-justify: center;
+  height: 30px;
+}
+.tags-listed{
+  display: flex;
+  height: 50%;
+  width: 100%;
+  overflow: auto;
+}
+.trends-listed{
+  display: flex;
+  height: 50%;
+  width: 100%;
+  overflow: auto;
+}
+.add-x-tags-listed{
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+.add-x-tags-listed .tag{
+  display: flex;
+  height: 20px;
+}
+.tag-inner{
+  display: flex;
+  flex-direction: row;
+}
+.del-tag{
+  display: flex;
+  width: 20px;
+  /* width: 100%; */
+
+  /* display: flex;
+  margin-right: 5px;
+  margin-left: 5px;
+  width: 100%;
+  background: gray;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  text-justify: center; */
+  
+}
+.del-tag:hover{
+  cursor: pointer;
+}
+.tag-name{
+  margin-left: 7px;
+}
+.edit-dish-view{
+  position: absolute;
+  z-index: 10;
+  /* height: 100%;
+  width: 100%; */
+  background: black;
+  color: white;
+  left: 0px;
+  top: 0px;
+}
+.close-edit-dish{
+  display: flex;
+  height: 40px; 
+  width: 100%; 
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  text-justify: center;
+}
+.close-edit-dish:hover{
+  cursor: pointer;
+}
+.edit-x-form{
+  /* display: flex;
+  flex-direction: row; */
+  height: 100%;
+  background: purple;
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+}
+.edit-x-form-inner{
+display: flex;
+flex-direction: column;
+}
+.edit-x-form-item{
+  display: flex;
+  flex-direction: row;
+}
+.edit-x-form-item div{
+  display: flex;
+  flex-direction: row;
 }

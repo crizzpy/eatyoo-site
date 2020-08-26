@@ -56,24 +56,30 @@ export const AdminView = () => {
                 </div>
                 <div className="admin-working-container">
                     <div className="admin-working-inner">
+                        
                         <Route path="/admin/dishes">
                             <Dishes />
                         </Route>
                         <Route path="/admin/dishes/add">
                             <AddDish navlinkRoute={"dishes"} />
                         </Route>
+
+
                         <Route path="/admin/lists">
                             <Lists />
                         </Route>
                         <Route path="/admin/lists/add">
                             <AddList navlinkRoute={"lists"} />
                         </Route>
+
+
                         <Route path="/admin/recipes">
                             <Recipes />
                         </Route>
                         <Route path="/admin/recipes/add">
                             <AddRecipe navlinkRoute={"recipes"} />
                         </Route>
+
                     </div>
                 </div>
             </div>

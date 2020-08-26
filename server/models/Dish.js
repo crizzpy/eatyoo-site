@@ -21,7 +21,7 @@ const DishSchema = mongoose.Schema({
         required: true,
     },
     dishImgUrl: {
-        type: String,
+        type: Array,
         required: true,
     },
     dishTags: {
@@ -29,7 +29,7 @@ const DishSchema = mongoose.Schema({
         required: false,
     },
     dishMemeUrl: {
-        type: String,
+        type: Array,
         required: false
     },
     dishAssociated: {

@@ -7,9 +7,36 @@ router.post('/test', async (req, res, next) => {
     res.send("hello");
 })
 
+router.patch("/edit", async (req, res) => {
+    const {
+        dishId,
+        dishTitle, 
+        dishDesc,
+        dishImgUrl,
+        dishTags,
+        dishMemeUrl,
+        dishAssociated
+    } = req.body
+    Dish.updateOne(req.body, err =>{
+        if(err) return res.status(500).send("Server error!");
+        return res.status(200).send("Admin status changed!");
+    });
+
+    // const newData = 
+    // try {
+    //     // Get the subscription for this customer
+    //     const dish = await Dish.updateOne();
+    //     // Update the subscription with the given plan
+    //     const updated = await dish.update(plan);
+    //     return res.send({subscription: updated});
+    // } catch (e) {
+    //     return next(new Error(e));
+    // }
+})
+
 router.post("/add", async (req, res) => {
     // console.log(req.body, 'test dish')
-    // console.log(req)
+    // console.log(req)20040d
     // console.log(req.body)
 
 

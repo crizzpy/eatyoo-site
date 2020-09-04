@@ -4,7 +4,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimesCircle } from "@fortawesome/free-solid-svg-icons";
 
-export const AddedTag = (props) => {
+export const AddedAssc = (props) => {
     return (
         <React.Fragment>
             <div className="tag">
@@ -16,10 +16,10 @@ export const AddedTag = (props) => {
                         // Delete tag logic
                         //check if its sitting within the "Add New" or "Edit" Form
                         
-                        if (props.addedTags) {
-                            props.setAddedTags([...props.addedTags.filter(addedTag => addedTag.id !== props.tag.id)])
-                        } else if (props.newTags) {
-                            props.setNewTags([...props.newTags.filter(newTag => newTag.id !== props.tag.id)])
+                        if (props.addedAsscs) {
+                            props.setAddedAsscs([...props.addedAsscs.filter(addedAssc => addedAssc.id !== props.assc.id)])
+                        } else if (props.newAsscs) {
+                            props.setNewAsscs([...props.newAsscs.filter(newAssc => newAssc.id !== props.assc.id)])
                         }
                     }}>
                         <FontAwesomeIcon icon="times-circle" class="fa-icon" /> 
@@ -27,7 +27,7 @@ export const AddedTag = (props) => {
 
                     {/* Tag Name */}
                     <div className="tag-name">
-                        {props.tag.name}
+                        {props.assc.name}
                     </div>
                 </div>
             </div>

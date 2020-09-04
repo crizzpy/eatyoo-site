@@ -1,5 +1,7 @@
 import React, {useRef, createRef, useState} from 'react'
 import {AddedTag} from '../AddedTag'
+import {AddedAssc} from '../AddedAssc'
+import axios from 'axios'
 import * as uuid from 'uuid'
 
 export const EditDishForm = ({dish}) => {
@@ -8,20 +10,38 @@ export const EditDishForm = ({dish}) => {
             dishId, dateAdded, dishTitle, dishDesc, 
             dishImgUrl, dishTags, dishMemeUrl, dishAssociated
     } = dish
+
     const [newTitle, setNewTitle] = useState(dishTitle)
     const [newDesc, setNewDesc] = useState(dishDesc)
     const [newImgUrl, setNewImgUrl] = useState(dishImgUrl)
     const [newTags, setNewTags] = useState(dishTags)
     const [newDishMemeUrl, setNewDishMemeUrl] = useState(dishMemeUrl)
-    const [newDishAssc, setNewDishAssc] = useState(dishAssociated)
+    const [newAsscs, setNewAsscs] = useState(dishAssociated)
 
     const newTagsRef = createRef(null)
+    const newAsscsRef = createRef(null)
+    const handlePatch = e => {
+        const dishData = {
+            dishId: dish.dishId,
+            dishTitle: newTitle,
+            dishDesc: newDesc,
+            dishImgUrl: newImgUrl,
+            dishTags: newTags,
+            dishMemeUrl: newDishMemeUrl,
+            dishAssociated: newAsscs
+        }
+        console.log(dishData)
 
+        
+
+        // axios.patch('/dishes/edit', dishData)
+        //     .then(res => {
+        //         console.log(res.data)
+        //     })
+        //     .catch(err => console.log(err))
+
+    }
     const handleChange = (e, field) => {
-        // console.log(e)
-        // console.log(dishId, dateAdded, dishTitle, dishDesc, 
-        //     dishImgUrl, dishTags, dishMemeUrl, dishAssociated)
-        // setNewTitle(e.target.value)
         switch (e.target.name) {
             case 'newTitle':
                 setNewTitle(e.target.value)
@@ -38,8 +58,8 @@ export const EditDishForm = ({dish}) => {
             case 'newDishMemeUrl':
                 setNewDishMemeUrl(e.target.value)
                 break
-            case 'newDishAssc':
-                setNewDishAssc(e.target.value)
+            case 'newAsscs':
+                setNewAsscs(e.target.value)
                 break
             default:
                 return
@@ -93,15 +113,15 @@ export const EditDishForm = ({dish}) => {
                         />
                     </div>
                 </div>
-                <div className="edit-x-form-item">
-                    <div>
+                <div className="edit-x-form-item" id="tags">
+                    <div style={{display: "flex"}}>
                         <label>Tags</label>
                     </div>
-                    <div>
-                        <input placeholder="Tags" ref={newTagsRef} />
+                    <div className="edit-tags-container">
+                        <div className="edit-tags-top">
+                            <input placeholder="Tags" ref={newTagsRef} id="edit" />
                             <button className="add-x-form-btn" onClick={e => {
                                 e.preventDefault()
-                                // if (!tagsRef == ''){
                                 if (newTagsRef.current.value){
                                     setNewTags([...newTags, {
                                         id: uuid.v4(),
@@ -113,17 +133,18 @@ export const EditDishForm = ({dish}) => {
                             }}>
                                 Add Tag
                             </button>
-                            <div className="add-x-tags-listed">
-                                {newTags.map(tag => {
-                                    return(
-                                        <AddedTag 
-                                            tag={tag}
-                                            newTags={newTags}
-                                            setNewTags={setNewTags}
-                                        />
-                                    )
-                                })}
-                            </div>
+                        </div>
+                        <div className="add-x-tags-listed" id="edit">
+                            {newTags.map(tag => {
+                                return(
+                                    <AddedTag 
+                                        tag={tag}
+                                        newTags={newTags}
+                                        setNewTags={setNewTags}
+                                    />
+                                )
+                            })}
+                        </div>
                     </div>
                 </div>
                 <div className="edit-x-form-item">
@@ -144,15 +165,38 @@ export const EditDishForm = ({dish}) => {
                     <div>
                         <label>Associated Lists/Trends</label>
                     </div>
-                    <div>
-                        <input 
-                            name="newDishAssc"
-                            value={newDishAssc}
-                            onChange={e => {
-                                handleChange(e)
-                            }}
-                        />
+                    <div className="edit-tags-container">
+                        <div className="edit-tags-top">
+                            <input placeholder="Add" ref={newAsscsRef} id="edit" />
+                            <button className="add-x-form-btn" onClick={e => {
+                                e.preventDefault()
+                                if (newAsscsRef.current.value){
+                                    setNewAsscs([...newAsscs, {
+                                        id: uuid.v4(),
+                                        name: newAsscsRef.current.value
+                                    }])
+                                    console.log(newAsscs)
+                                    newAsscsRef.current.value = ''
+                                }
+                            }}>
+                                Add Association
+                            </button>
+                        </div>
+                        <div className="add-x-tags-listed" id="edit">
+                            {newAsscs.map(assc => {
+                                return(
+                                    <AddedAssc 
+                                        assc={assc}
+                                        newAsscs={newAsscs}
+                                        setNewAsscs={setNewAsscs}
+                                    />
+                                )
+                            })}
+                        </div>
                     </div>
+                </div>
+                <div className="edit-x-form-item" id="send-edit">
+                    <button onClick={e => handlePatch(e)}>Update Dish</button>
                 </div>
             </div>
         </div>
